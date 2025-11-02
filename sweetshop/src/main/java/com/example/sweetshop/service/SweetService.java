@@ -5,65 +5,80 @@ import com.example.sweetshop.repository.SweetRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class SweetService {
+
     private final SweetRepository repo;
 
     public SweetService(SweetRepository repo) {
         this.repo = repo;
     }
 
-    public Sweet add(Sweet s) {
-        return repo.save(s);
+    // Add new sweet
+    public Sweet add(Sweet sweet) {
+        return repo.save(sweet);
     }
 
+    // List all sweets
     public List<Sweet> list() {
         return repo.findAll();
     }
 
-    public Optional<Sweet> findById(Long id) {
-        return repo.findById(id);
+    // Unified find with proper exception
+    public Sweet getById(Long id) {
+        return getSweetOrThrow(id);
     }
 
+    // Flexible search with null-safe conditions
     public List<Sweet> search(String name, String category, Double minPrice, Double maxPrice) {
-        if (name != null) return repo.findByNameContainingIgnoreCase(name);
-        if (category != null) return repo.findByCategoryIgnoreCase(category);
-        if (minPrice != null && maxPrice != null) return repo.findByPriceBetween(minPrice, maxPrice);
+        if (name != null && !name.isBlank()) {
+            return repo.findByNameContainingIgnoreCase(name);
+        }
+        if (category != null && !category.isBlank()) {
+            return repo.findByCategoryIgnoreCase(category);
+        }
+        if (minPrice != null && maxPrice != null && minPrice <= maxPrice) {
+            return repo.findByPriceBetween(minPrice, maxPrice);
+        }
         return repo.findAll();
     }
 
+    // Update sweet
     public Sweet update(Long id, Sweet payload) {
-        Sweet s = getSweetOrThrow(id);
-        s.setName(payload.getName());
-        s.setCategory(payload.getCategory());
-        s.setPrice(payload.getPrice());
-        s.setQuantity(payload.getQuantity());
-        return repo.save(s);
+        Sweet sweet = getSweetOrThrow(id);
+        sweet.setName(payload.getName());
+        sweet.setCategory(payload.getCategory());
+        sweet.setPrice(payload.getPrice());
+        sweet.setQuantity(payload.getQuantity());
+        return repo.save(sweet);
     }
 
+    // Delete sweet
     public void delete(Long id) {
         repo.deleteById(id);
     }
 
+    // Customer purchase
     public Sweet purchase(Long id, int qty) {
-        Sweet s = getSweetOrThrow(id);
-        if (s.getQuantity() < qty)
+        Sweet sweet = getSweetOrThrow(id);
+        if (sweet.getQuantity() < qty) {
             throw new RuntimeException("Insufficient quantity");
-        s.setQuantity(s.getQuantity() - qty);
-        return repo.save(s);
+        }
+        sweet.setQuantity(sweet.getQuantity() - qty);
+        return repo.save(sweet);
     }
 
+    // Admin restock
     public Sweet restock(Long id, int qty) {
-        Sweet s = getSweetOrThrow(id);
-        s.setQuantity(s.getQuantity() + qty);
-        return repo.save(s);
+        Sweet sweet = getSweetOrThrow(id);
+        sweet.setQuantity(sweet.getQuantity() + qty);
+        return repo.save(sweet);
     }
 
-    // ✅ Your new helper method goes here
+    // Helper
     private Sweet getSweetOrThrow(Long id) {
         return repo.findById(id)
-                .orElseThrow(() -> new RuntimeException("Sweet not found"));
+                .orElseThrow(() -> new RuntimeException("Sweet not found with ID: " + id));
     }
 }
