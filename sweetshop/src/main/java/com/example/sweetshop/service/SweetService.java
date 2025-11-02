@@ -14,7 +14,6 @@ public class SweetService {
     public List<Sweet> list(){ return repo.findAll(); }
     public Optional<Sweet> findById(Long id){ return repo.findById(id); }
     public List<Sweet> search(String name, String category, Double minPrice, Double maxPrice){
-        // simple multi-criteria handling
         if (name != null) return repo.findByNameContainingIgnoreCase(name);
         if (category != null) return repo.findByCategoryIgnoreCase(category);
         if (minPrice!=null && maxPrice!=null) return repo.findByPriceBetween(minPrice, maxPrice);
