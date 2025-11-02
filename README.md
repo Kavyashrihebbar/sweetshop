@@ -87,8 +87,6 @@ ChatGPT (GPT-5)
 * Helped write JUnit test cases.
 
 * Helped fix API issues between React and Spring Boot.
-
-* Assisted in writing this README and organizing project files.
   
 ### Reflection on AI’s Impact
 
