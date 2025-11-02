@@ -48,6 +48,8 @@ npm start
 #### Run JUnit tests
 ./gradlew test
 
+---
+
 
 ## ⚙️ Features
 
@@ -61,6 +63,9 @@ npm start
 | ⚡ **Single Page App** | React.js frontend with live API connection |
 
 
+---
+
+
 ## screenshots:
  #### Login
 <img width="1871" height="916" alt="Login" src="https://github.com/user-attachments/assets/4b368dc5-ec4f-4f09-8cb4-e5a27af494d5" />
@@ -71,7 +76,7 @@ npm start
 #### Admin Home Page
 <img width="1885" height="910" alt="Admin_Homepage" src="https://github.com/user-attachments/assets/84c52e55-0bd2-4980-8a86-5f16b8aa8dfa" />
 
-
+---
 
 ## 🤖 My AI Usage
 ### 🧠 Tools Used
@@ -102,13 +107,14 @@ Using AI made development smoother and faster. It helped me:
 
 I carefully reviewed, edited, and tested all AI-generated code to ensure it meets my learning goals and maintains correctness.
 
+---
+
 ## Test Report
 All test cases passed successfully 
 
 <img width="646" height="127" alt="Screenshot 2025-11-02 212551" src="https://github.com/user-attachments/assets/93128638-205c-4b68-b5be-7c6441579f04" />
 
-
- 
+ ---
  
 ## Author
 
