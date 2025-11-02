@@ -1,4 +1,3 @@
-<img width="646" height="127" alt="Screenshot 2025-11-02 212551" src="https://github.com/user-attachments/assets/93128638-205c-4b68-b5be-7c6441579f04" />#  Sweet Shop Management System
 # 🍬 Sweet Shop Management System
 
 A full-stack web application for managing sweets, users, and admin operations — built with **Java (Spring Boot)**, **SQLite**, and **React.js**.
@@ -53,7 +52,8 @@ App will open at: http://localhost:3000
 ./gradlew test
 
 
-##  Features
+
+## ⚙️ Features
 
 | Feature | Description |
 |----------|-------------|
@@ -99,7 +99,7 @@ I carefully reviewed, edited, and tested all AI-generated code to ensure it meet
 
 ## Test Report
 All test cases passed successfully 
-<img width="646" height="127" alt="screenshots_tests" src="https://github.com/user-attachments/assets/c8bc18be-ed34-4c7e-bb5a-e6a378eba039" />
+<img width="646" height="127" alt="Screenshot 2025-11-02 212551" src="https://github.com/user-attachments/assets/93128638-205c-4b68-b5be-7c6441579f04" />
 
 
  Author
