@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class AdminService {
+
     private final SweetRepository repo;
 
     public AdminService(SweetRepository repo) {
@@ -13,12 +14,18 @@ public class AdminService {
     }
 
     public Sweet restock(Long id, int qty) {
-        Sweet s = repo.findById(id).orElseThrow(() -> new RuntimeException("Not found"));
-        s.setQuantity(s.getQuantity() + qty);
-        return repo.save(s);
+        Sweet sweet = getSweetOrThrow(id); // ✅ use helper
+        sweet.setQuantity(sweet.getQuantity() + qty);
+        return repo.save(sweet);
     }
 
     public void delete(Long id) {
         repo.deleteById(id);
+    }
+
+    // ✅ Helper extracted to avoid repeating lookup logic
+    private Sweet getSweetOrThrow(Long id) {
+        return repo.findById(id)
+                .orElseThrow(() -> new RuntimeException("Sweet not found"));
     }
 }
