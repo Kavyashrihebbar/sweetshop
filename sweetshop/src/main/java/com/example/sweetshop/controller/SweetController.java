@@ -1,21 +1,25 @@
 package com.example.sweetshop.controller;
+
 import com.example.sweetshop.model.Sweet;
 import com.example.sweetshop.service.SweetService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 import java.util.Map;
+import java.util.HashMap;
+
 
 @RestController
 @RequestMapping("/api/sweets")
-@CrossOrigin(origins = "http://localhost:3000")
 public class SweetController {
     private final SweetService service;
     public SweetController(SweetService service){this.service=service;}
 
     @PostMapping
     public ResponseEntity<?> add(@RequestBody Sweet s, Authentication auth){
+        // only authenticated users can add; in your rules maybe only admin should add - adjust as needed
         return ResponseEntity.ok(service.add(s));
     }
 
@@ -23,20 +27,24 @@ public class SweetController {
     public List<Sweet> list(){ return service.list(); }
 
     @GetMapping("/search")
-    public List<Sweet> search(@RequestParam(required=false) String name,
-                              @RequestParam(required=false) String category,
-                              @RequestParam(required=false) Double minPrice,
-                              @RequestParam(required=false) Double maxPrice) {
-        return service.search(name, category, minPrice, maxPrice);
-    }
+public ResponseEntity<List<Sweet>> search(
+        @RequestParam(required = false) String name,
+        @RequestParam(required = false) String category,
+        @RequestParam(required = false) Double minPrice,
+        @RequestParam(required = false) Double maxPrice) {
+    return ResponseEntity.ok(service.search(name, category, minPrice, maxPrice));
+}
+
 
     @PutMapping("/{id}")
     public ResponseEntity<?> update(@PathVariable Long id, @RequestBody Sweet s, Authentication auth){
+        // admin check or ownership check can be enforced by role
         return ResponseEntity.ok(service.update(id, s));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id, Authentication auth){
+        // check role
         if (!hasRole(auth, "ADMIN")) return ResponseEntity.status(403).body("Forbidden");
         service.delete(id);
         return ResponseEntity.ok(Map.of("deleted", id));
