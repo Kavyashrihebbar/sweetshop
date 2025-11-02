@@ -4,6 +4,7 @@ import com.example.sweetshop.model.User;
 import com.example.sweetshop.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -15,12 +16,13 @@ public class AuthService {
     private final PasswordEncoder encoder;
 
     // Constructor for Spring Boot dependency injection
+    @Autowired
     public AuthService(UserRepository repo, PasswordEncoder encoder) {
         this.repo = repo;
         this.encoder = encoder;
     }
 
-    // Overloaded constructor for unit testing
+    // Overloaded constructor for unit testing (no Spring context)
     public AuthService(UserRepository repo) {
         this.repo = repo;
         this.encoder = new PasswordEncoder() {
@@ -63,18 +65,29 @@ public class AuthService {
     // Public Methods
     // --------------------------
 
-    public User register(User user) {
-        user.setPassword(encodePassword(user.getPassword()));
+    public User register(String username, String password, String role) {
+        if (repo.findByUsername(username).isPresent()) {
+            logger.warn("Registration failed: username '{}' already exists", username);
+            throw new UsernameAlreadyExistsException("Username already exists: " + username);
+        }
+
+        User user = new User();
+        user.setUsername(username);
+        user.setPassword(encodePassword(password));
+        user.setRole(role);
+
         User saved = repo.save(user);
-        logger.info("User '{}' registered successfully", user.getUsername());
-        return saved;
+        logger.info("User '{}' registered successfully with role '{}'", username, role);
+        return saved; // ✅ return the saved user
     }
 
     public User login(String username, String password) {
-        User user = getUserOrThrow(username);
-        validatePassword(password, user.getPassword(), username);
-        logger.info("User '{}' logged in successfully", username);
-        return user;
+        User user = repo.findByUsername(username)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+        if (!encoder.matches(password, user.getPassword())) {
+            throw new RuntimeException("Invalid credentials");
+        }
+        return user; // ✅ return user
     }
 
     // --------------------------
@@ -89,6 +102,12 @@ public class AuthService {
 
     public static class InvalidPasswordException extends RuntimeException {
         public InvalidPasswordException(String message) {
+            super(message);
+        }
+    }
+
+    public static class UsernameAlreadyExistsException extends RuntimeException {
+        public UsernameAlreadyExistsException(String message) {
             super(message);
         }
     }

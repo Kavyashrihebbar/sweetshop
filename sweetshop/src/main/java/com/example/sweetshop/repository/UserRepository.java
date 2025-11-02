@@ -1,4 +1,5 @@
 package com.example.sweetshop.repository;
+
 import com.example.sweetshop.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
