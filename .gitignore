@@ -1,0 +1,20 @@
+# Maven / Gradle
+target/
+build/
+
+# IDEs
+.idea/
+*.iml
+*.class
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+
+# Node (for frontend later)
+node_modules/
+dist/
