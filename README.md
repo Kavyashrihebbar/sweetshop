@@ -67,7 +67,7 @@ npm start
 
 ## screenshots:
  #### Login
-<img width="1871" height="916" alt="Login" src="https://github.com/user-attachments/assets/4b368dc5-ec4f-4f09-8cb4-e5a27af494d5" />
+<img width="1871" height="916" alt="Login" src="https://github.com/user-attachments/assets/f41e09c0-3c13-4ac5-ad0b-e0e22e53fdd9" />
 
 #### User Home Page
 <img width="1892" height="902" alt="User_Homepage" src="https://github.com/user-attachments/assets/1c661da0-a9a6-4f7d-8a64-10177eab51fd" />
