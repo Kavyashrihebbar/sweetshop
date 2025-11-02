@@ -38,6 +38,8 @@ gradlew bootRun
 Backend will start at: http://localhost:8080
 Verify API: http://localhost:8080/api/sweets
 
+---
+
 # Navigate to frontend folder
 cd sweetshop-frontend
 
@@ -48,10 +50,12 @@ npm install
 npm start
 App will open at: http://localhost:3000
 
+---
+
 # Run JUnit tests
 ./gradlew test
 
-
+---
 
 ## ⚙️ Features
 
