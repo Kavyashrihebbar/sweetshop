@@ -22,40 +22,32 @@ It demonstrates full-stack development using **Spring Boot APIs** for the backen
 ---
 
 ## ⚙️ Setup & Run Instructions
-
 ### 🖥️ Backend Setup (Spring Boot)
-
-```bash
-# Navigate to backend folder
+#### Navigate to backend folder
 cd sweetshop
 
-# Run backend
-# For Linux/Mac
+#### Run backend
+###### For Linux/Mac
 ./gradlew bootRun
 
-# For Windows
+###### For Windows
 gradlew bootRun
-Backend will start at: http://localhost:8080
-Verify API: http://localhost:8080/api/sweets
+#### Backend will start at: http://localhost:8080
+#### Verify API: http://localhost:8080/api/sweets
 
----
-
-# Navigate to frontend folder
+#### Navigate to frontend folder
 cd sweetshop-frontend
 
-# Install dependencies
+#### Install dependencies
 npm install
 
-# Start the frontend
+#### Start the frontend
 npm start
-App will open at: http://localhost:3000
+#### App will open at: http://localhost:3000
 
----
-
-# Run JUnit tests
+#### Run JUnit tests
 ./gradlew test
 
----
 
 ## ⚙️ Features
 
@@ -69,44 +61,64 @@ App will open at: http://localhost:3000
 | ⚡ **Single Page App** | React.js frontend with live API connection |
 
 
-## 📁 Folder structure for screenshots:
+## screenshots:
+ #### Login
+<img width="1871" height="916" alt="Login" src="https://github.com/user-attachments/assets/4b368dc5-ec4f-4f09-8cb4-e5a27af494d5" />
 
-🤖 My AI Usage
-🧠 Tools Used
+#### User Home Page
+<img width="1892" height="902" alt="User_Homepage" src="https://github.com/user-attachments/assets/1c661da0-a9a6-4f7d-8a64-10177eab51fd" />
+
+#### Admin Home Page
+<img width="1885" height="910" alt="Admin_Homepage" src="https://github.com/user-attachments/assets/84c52e55-0bd2-4980-8a86-5f16b8aa8dfa" />
+
+
+
+## 🤖 My AI Usage
+### 🧠 Tools Used
 
 ChatGPT (GPT-5)
 
-⚙️ How I Used AI
+### ⚙️ How I Used AI
 
-Planned the project structure for backend and frontend.
+* Planned the project structure for backend and frontend.
 
-Generated sample code for Spring Boot controllers, services, and repositories.
+* Generated sample code for Spring Boot controllers, services, and repositories.
 
-Helped write JUnit test cases.
+* Helped write JUnit test cases.
 
-Helped fix API issues between React and Spring Boot.
+* Helped fix API issues between React and Spring Boot.
 
-Assisted in writing this README and organizing project files.
-Reflection on AI’s Impact
+* Assisted in writing this README and organizing project files.
+  
+### Reflection on AI’s Impact
 
 Using AI made development smoother and faster. It helped me:
 
-Understand backend–frontend integration better.
+* Understand backend–frontend integration better.
 
-Learn how to structure code using best practices.
+* Learn how to structure code using best practices.
 
-Save time on repetitive tasks like boilerplate generation.
+* Save time on repetitive tasks like boilerplate generation.
 
-Focus more on logic and testing rather than setup.
+* Focus more on logic and testing rather than setup.
 
 I carefully reviewed, edited, and tested all AI-generated code to ensure it meets my learning goals and maintains correctness.
 
 ## Test Report
 All test cases passed successfully 
+
 <img width="646" height="127" alt="Screenshot 2025-11-02 212551" src="https://github.com/user-attachments/assets/93128638-205c-4b68-b5be-7c6441579f04" />
 
 
- Author
+ 
+ 
+## Author
 
 Kavyashri Hebbar
-Co-authored-by: ChatGPT (AI Assistant) AI@users.noreply.github.com
+
+Co-authored-by: ChatGPT (AI Assistant) AI@users.noreply.github.com 
+
+
+
+
+---
